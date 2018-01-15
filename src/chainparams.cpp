@@ -62,8 +62,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
-    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+    const char* pszTimestamp = "07/Jan/2018 And those who were seen dancing were thought to be insane by those who could not hear the music.";
+    const CScript genesisOutputScript = CScript() << ParseHex("041c0d373495d9c48e3aa56de0b482146724f1a22403afb85d0fd8aa30fa413a259382af38b7af87a1167b9974cfa192ed0ec5751207cb8da2bdad7540a9d5ba7f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -142,10 +142,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStartLegacy[0] = 0xf9;
-        pchMessageStartLegacy[1] = 0xbe;
-        pchMessageStartLegacy[2] = 0xb4;
-        pchMessageStartLegacy[3] = 0xd9;
+        pchMessageStartLegacy[0] = 0xfc;
+        pchMessageStartLegacy[1] = 0xda;
+        pchMessageStartLegacy[2] = 0xba;
+        pchMessageStartLegacy[3] = 0xde;
 
         pchMessageStart[0] = 0xe1;
         pchMessageStart[1] = 0x47;
@@ -159,20 +159,22 @@ public:
         nEquihashN = N;
         nEquihashK = K;
 
-        genesis = CreateGenesisBlock(1231006505, 2083236893, 0x1d00ffff, 1, 50 * COIN);
+	genesis = CreateGenesisBlock(1515353000, 414098458, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash(consensus);
-        assert(consensus.hashGenesisBlock == uint256S("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+
+        consensus.hashGenesisBlock = genesis.GetHash(consensus);
+	assert(consensus.hashGenesisBlock == uint256S("0x"));
+        assert(genesis.hashMerkleRoot == uint256S("0x813d520f9624c684d95bff37a3a91a359fd4c978a0d144890f019c105e3a5a0f"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
 
-        vSeeds.emplace_back("eu-dnsseed.bitcoingold-official.org", true);
-        vSeeds.emplace_back("dnsseed.bitcoingold.org", true);
-        vSeeds.emplace_back("dnsseed.btcgpu.org", true);
+        //vSeeds.emplace_back("eu-dnsseed.bitcoingold-official.org", true);
+        //vSeeds.emplace_back("dnsseed.bitcoingold.org", true);
+        //vSeeds.emplace_back("dnsseed.btcgpu.org", true);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);  // prefix: G
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);  // prefix: M
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,23);  // prefix: A
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
@@ -278,10 +280,10 @@ public:
         pchMessageStartLegacy[2] = 0x09;
         pchMessageStartLegacy[3] = 0x07;
 
-        pchMessageStart[0] = 0xe1;
-        pchMessageStart[1] = 0x47;
-        pchMessageStart[2] = 0x6d;
-        pchMessageStart[3] = 0x44;
+        pchMessageStart[0] = 0xfb;
+        pchMessageStart[1] = 0xfa;
+        pchMessageStart[2] = 0xfc;
+        pchMessageStart[3] = 0xff;
         nDefaultPort = 18810;
         nBitcoinDefaultPort = 18810;
         nPruneAfterHeight = 1000;
@@ -290,21 +292,21 @@ public:
         nEquihashN = N;
         nEquihashK = K;
 
-        genesis = CreateGenesisBlock(1296688602, 414098458, 0x1d00ffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1515353076, 414098458, 0x1d00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash(consensus);
         assert(consensus.hashGenesisBlock == uint256S("0x000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"));
-        assert(genesis.hashMerkleRoot == uint256S("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        assert(genesis.hashMerkleRoot == uint256S("0x"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
 
-        vSeeds.emplace_back("eu-test-dnsseed.bitcoingold-official.org", true);
-        vSeeds.emplace_back("test-dnsseed.bitcoingold.org", true);
-        vSeeds.emplace_back("test-dnsseed.btcgpu.org", true);
-        vSeeds.emplace_back("btg.dnsseed.minertopia.org", true);
+        //vSeeds.emplace_back("eu-test-dnsseed.bitcoingold-official.org", true);
+        //vSeeds.emplace_back("test-dnsseed.bitcoingold.org", true);
+        //vSeeds.emplace_back("test-dnsseed.btcgpu.org", true);
+        //vSeeds.emplace_back("btg.dnsseed.minertopia.org", true);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,110);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
